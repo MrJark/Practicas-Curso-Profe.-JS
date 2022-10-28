@@ -22,7 +22,21 @@
       <button>Play/Pause</button>
     </main>
     <script>
-      
+
+      const video = document.querySelector("video");
+      const button = document.querySelector("button");
+
+      function MediaPlayer(config) {
+        this.media = config.el; //lo que hace this. es guardar un valor en la estancia de medeiPlayer en este caso par que podamos llamrlo desde cualquier método que haga referencia a esa misma funcions
+      }
+
+      MediaPlayer.prototype.play = function() {
+        this.media.play();
+      };
+
+      const player = new MediaPlayer( {el: video} );
+      button.onclick = () => player.play();
+
     </script>
   </body>
 </html>

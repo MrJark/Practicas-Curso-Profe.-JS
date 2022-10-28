@@ -1,13 +1,15 @@
 {
-    "name": "proyectoFinal",
+    "name": "platzi-media-player",
     "version": "1.0.0",
-    "description": "",
+    "description": "Proyecto del Curso Profesional de JS",
     "main": "index.js",
     "scripts": {
       "start": "live-server"
     },
-    "keywords": [],
-    "author": "Jaime Burbano",
+    "keywords": [
+      "platzi"
+    ],
+    "author": "MrJark you can find me in mrjark.com",
     "license": "MIT",
     "devDependencies": {
       "live-server": "^1.2.1"
