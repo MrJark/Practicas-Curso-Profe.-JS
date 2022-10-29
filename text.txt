@@ -1,0 +1,5 @@
+Hay 4 tipos de Scope(es o que define el tiempo de vida de una variable y donde se puede ejecutar)
+    1. Global: Variables disponibles de forma global se usa la palabra var, son accesibles por todos los scripts que se cargan en la página y se declaran fuera de una función o bloque. Aquí hay mucho riesgo de sobreescritura.
+    2. Function: Variables declaradas dentro de una función utilizando var sólo visibles dentro de ella misma (incluyendo los argumentos que se pasan a la función).
+    3. Block: Variables definidas dentro de un bloque, por ejemplo variables declaradas dentro un loop while o for. Se usa let y const para declarar este tipo de variables.
+    4. Module: Cuando se denota un script de tipo module con el atributo type="module" las variables son limitadas al archivo en el que están declaradas.
