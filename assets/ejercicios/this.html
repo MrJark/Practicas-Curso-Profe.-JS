@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //this en el global scope
+        console.log(`this: ${this}`);//si lo usamos en el global, simepre lo va a asignar a window
+        
+        //this en un scope de una funcion
+        function whoIsThis() {
+            return this;
+        };
+        console.log(`whoIsThis(): ${whoIsThis()}`);// volvemos a obtener otra vez window porque no estamos usando el strict mode
+
+        //this con function scope with strict mode
+        "use strict";//este es el comando que hace que sea estricto y se puede poner fuera o dentro de una función y dependiendo de dónde esté, será de modo gobal o solo en esa funcion
+
+
+    </script>
+</body>
+</html>

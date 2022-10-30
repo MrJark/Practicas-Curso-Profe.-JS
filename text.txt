@@ -15,5 +15,5 @@ se le llama de la siguiente manera:
     })();
 Este tipo de function se usan por motivos de privacidad en versines anteriores pero ahora con let y const  es necesarioy no debo usarlo ]
 
-
-
+"use strict"
+lo usamos para evitar errores de una forma temprana, durante el desarrollo.
