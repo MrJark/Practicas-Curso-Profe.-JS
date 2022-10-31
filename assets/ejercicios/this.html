@@ -8,6 +8,7 @@
 </head>
 <body>
     <script>
+        //this se refiere a un objeto, ese objeto es el que actualmente está ejecutando un pedazo de código
         //this en el global scope
         console.log(`this: ${this}`);//si lo usamos en el global, simepre lo va a asignar a window
         
@@ -18,8 +19,36 @@
         console.log(`whoIsThis(): ${whoIsThis()}`);// volvemos a obtener otra vez window porque no estamos usando el strict mode
 
         //this con function scope with strict mode
-        "use strict";//este es el comando que hace que sea estricto y se puede poner fuera o dentro de una función y dependiendo de dónde esté, será de modo gobal o solo en esa funcion
+        function whoIsThis() {
+            "use strict";//este es el comando que hace que sea estricto y se puede poner fuera o dentro de una función y dependiendo de dónde esté, será de modo gobal o solo en esa funcion
 
+            return this;
+        };
+        console.log(`whoIsThis(): ${whoIsThis()}`);
+
+        // this en el contexto de un objeto
+        const person = {
+            name: 'Gabriel',
+            saludar: function () {
+                console.log(`Hola, soy ${this.name}`);
+            },//el thhis aquí se refiere a toda la función, hace referencia a la función donde se encuentra
+        };
+        person.saludar();
+
+        //this cuando sacamos a una función de un objeto
+        const accion = person.saludar;
+        accion();//al hacer estas dos lineas iniciales, me va a decir en la consola: "Hola, soy " ya que el this se está llamando dentro de la función
+
+        //this en el contexto de una clase
+        function persons (name) {
+            this.name = name
+        };
+        persons.prototype.saludar = function () {
+            console.log(`Me llamo ${this.name}`);
+        };
+
+        const antonio = new persons ('Antonio');
+        antonio.saludar();
 
     </script>
 </body>
