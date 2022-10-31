@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <ul>
+        <li><button class="CTA">Aprende carajos</button></li>
+        <li><button class="CTA">Aprende más carajos</button></li>
+        <li><button class="CTA">Nunca pares de aprender</button></li>
+    </ul>
+
+    <script>
+        //todas las funciones tienen incorporadas las funcionalidades de call, apply y bind
+        //Estableciendo this usando call
+        function saludar() {
+            consolee.log( `Hola, soy ${this.name} ${this.apellido}`);
+        }
+
+        const richard = {
+            name: 'Richard',
+            apellido: 'Manchado',
+        };
+        saludar.call(richard);
+
+        function caminar (metros, direccion) {
+            console.log(`${this.name} camina ${metros} metros hacia ${direccion}`);
+        }
+        caminar.call(richard, 400, 'norte');//con esto le estamos diciendo que nos de el nombre y le estamos dando los valores de los argumentos que le hemos pedido a la función
+
+        //establecemos this usando apply
+        caminar.apply(richard, [800, 'noreste']);//esta es una manera
+
+        const arreglo = [800, 'noreste'];
+        caminar.apply(richard, [arreglo]);//esta es la otra manera
+
+        //la direfencia entre call y apply
+        //call se usa para añadir elementos entre comas (ambas empiezan por C, call y comas)
+        //apply añado a través de arreglos, ambas empiezan por A
+
+        //this a través de bind
+        const daniel = {
+            name: 'Daniel',
+            apellido: 'Koftman',
+        };
+        const danielSaluda = saludar.bind(daniel);//para que el bind funcione, tenemos que crear una función con lo que queremos que haga bind, no funciona como apply o call
+
+        const danielCamina = caminar.bind(daniel);
+        danielCamina(1000, 'este');
+
+        //ejercicio para los botones para dar funcionalidad
+        const buttons = document.getElementsByClassName("CTA");
+        // buttons.forEach (button => {
+        //     button.onclick = () => alert('Nunca pares de aprender carajo!');
+        // });
+
+        //con esto anterior no funciona pq es un nodelist para que funcione tenemos que hacer lo siguiente
+        Array.prototype.forEach.call(buttons, button => {
+            button.onclick = () => alert ('Nunca pares de aprender carajo!');
+        });
+
+    </script>
+</body>
+</html>
