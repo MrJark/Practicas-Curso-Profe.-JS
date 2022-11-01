@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Prototype</title>
+</head>
+<body>
+    <script>
+
+        //objeto común y corriente. 
+        //crear este tipo de objetos no es eficiente porque por cada uno de los onjetos, tengo que crear toda esta base
+        // const pikachu = {
+        //     name: 'Pikachu',
+        // };
+        // pikachu.saludar = function ( ) {
+        //     console.log(`hola soy ${this.name}`);
+        // };
+        // pikachu.saludar();
+
+        //como lo anterior pero algo más eficiente
+        // function Hero (name) {
+        //     const hero = {
+        //         name: name,
+        //     };
+
+        //     hero.saludar = function () {
+        //         console.log(`Hola soy ${this.name}`);
+        //     };
+        //     return hero ;
+        // };
+        // const pikachu = Hero('Pikachu');
+        // pikachu.saludar();
+        
+        // const Ash = Hero ('Ash');
+        // Ash.saludar();
+
+        //seamos aun mas efcientes
+        // const heroMethods = {
+        //     saludar: function () {
+        //         console.log(`Hola soy ${this.name}`);
+        //     },
+        // };
+        // function Hero (name) {
+        //     const hero = {
+        //         name: name,
+        //     };
+
+        //     hero.saludar = heroMethods.saludar;
+        //     return hero;
+        // };
+        // const pikachu = Hero('Pikachu');
+        // pikachu.saludar();
+        
+        // const Ash = Hero ('Ash');
+        // Ash.saludar();
+
+        //otro método aun más eficiente Object.create()
+        // const heroMethods = {
+        //     saludar: function () {
+        //         console.log(`Hola soy ${this.name} y soy un superhero`);
+        //     },
+        // };
+        // function Hero (name) {
+        //     const hero = Object.create(heroMethods)
+        //     hero.name = name 
+        //     return hero;
+        // };
+        // const pikachu = Hero('Pikachu');
+        // pikachu.saludar();
+        
+        // const Ash = Hero ('Ash');
+        // Ash.saludar();
+
+        //métodos de hero dentro de Hero
+        // const heroMethods = {
+        //     saludar: function () {
+        //         console.log(`Hola soy ${this.name} y soy un superhero`);
+        //     },
+        // };
+        // function Hero (name) {
+        //     const hero = Object.create(Hero.prototype);
+        //     hero.name = name 
+        //     return hero;
+        // };
+        // Hero.prototype.saludar = function () {
+        //     console.log(`Hola soy ${this.name} y soy una superhero`);
+        // };
+    
+        // const pikachu = Hero('Pikachu');
+        // pikachu.saludar();
+        
+        // const Ash = Hero ('Ash');
+        // Ash.saludar();
+
+        // vamos a usar ahora la keyword de new que no es más que un atajo para llevar nuestro Hero.prototype al objeto que estamos creando
+        function Hero (name) {
+            // const hero = Object.create(Hero.prototype);
+            this.name = name 
+            // return this;
+        };
+        Hero.prototype.saludar = function () {
+            console.log(`New: Soy ${this.name} y soy una superhero`);
+        };
+    
+        const pikachu = new Hero('Pikachu');
+        pikachu.saludar();
+        
+        const Ash = new Hero ('Ash');
+        Ash.saludar();
+
+
+    </script>
+</body>
+</html>
