@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promises</title>
+</head>
+<body>
+    <script>
+        //el siguiente código está hecho en AST explorer
+
+        //código
+        const pi = 3.1415;
+        const half_pi = 1.57075;
+        // variable constantes
+        // variables que guarden un numero
+        // El nombre de la variable tiene que estar en UPPERCASE
+
+        export default function(context) {
+            return {
+                VariableDeclaration(node) {
+                    // tipo de variable const
+                    if (node.kind === "const") {
+                    const declaration = node.declarations[0];
+                    
+                    // asegurarnos que el valor es un numero
+                    if (typeof declaration.init.value === "number") {
+                        if (declaration.id.name !== declaration.id.name.toUpperCase()) {
+                            context.report({
+                                node: declaration.id,
+                                message: "El nombre de la constante debe estar en mayúsculas",
+                                fix: function(fixer) {
+                                    return fixer.replaceText(declaration.id, declaration.id.name.toUpperCase())
+                                }
+                            })
+                        }
+                    }
+                    }
+                }
+            };
+        }; 
+    </script>
+</body>
+</html>

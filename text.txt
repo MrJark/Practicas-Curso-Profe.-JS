@@ -17,3 +17,28 @@ Este tipo de function se usan por motivos de privacidad en versines anteriores p
 
 "use strict"
 lo usamos para evitar errores de una forma temprana, durante el desarrollo.
+
+PARSERS Y ABSTRACT SYNTAX TREE
+El JS Engine recibe el código fuente y lo procesa de la siguiente manera:
+
+- El parser descompone y crea tokens que integran el AST.
+- Se compila a bytecode y se ejecuta.
+- Lo que se pueda se optimiza a machine code y se reemplaza el código base.
+
+Un SyntaxError es lanzado cuando el motor JavaScript encuentra partes que no forman parte de la sintaxis del lenguaje y esto lo logra gracias a que se tiene un AST generado por el parser.
+
+El parser es del 15% al 20% del proceso de ejecución por lo que hay que usar parser del código justo en el momento que lo necesitamos y no antes de saber si se va a usar o no.
+
+EVENT LOOPS
+
+El Event Loop hace que Javascript parezca ser multihilo a pesar de que corre en un solo proceso.
+
+Javascript se organiza usando las siguientes estructuras de datos:
+
+- Stack. Va apilando de forma organizada las diferentes instrucciones que se llaman. Lleva así un rastro de dónde está el programa, en que punto de ejecución nos encontramos.
+- Memory Heap. De forma desorganizada se guarda información de las variables y del scope.
+- Schedule Tasks. Aquí se agregan a la cola, las tareas programadas para su ejecución.
+- Task Queue. Aquí se agregan las tares que ya están listas para pasar al stack y ser ejecutadas. El stack debe estar vacío para que esto suceda.
+- MicroTask Queue. Aquí se agregan las promesas. Esta Queue es la que tiene mayor prioridad.
+
+El Event Loop es un loop que está ejecutando todo el tiempo y pasa periódicamente revisando las queues y el stack moviendo tareas entre estas dos estructuras.
