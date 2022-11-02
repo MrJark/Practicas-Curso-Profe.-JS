@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herencia Prototipal</title>
+</head>
+<body>
+    <script>
+        function Hero (name) {
+            this.name = name;
+        }; 
+        Hero.prototype.saludar = function () {
+            console.log(`Hola soy ${this.name}`);
+        };
+        const ash = new Hero ('Ash');
+
+        //propiedades de las instancia
+        console.log('Name:', ash.name )
+
+        //propiedades de la clase
+        console.log('Saludar:', ash.saludar);
+
+        //propiedades heredadas
+        console.log('toString:', ash.saludar);
+
+        //Por default los objetos en JavaScript tienen cómo prototipo a Object que es el punto de partida de todos los objetos, es el prototipo padre. Object es la raíz de todo, por lo tanto tiene un prototipo padre undefined.
+        //Cuando se llama a una función o variable que no se encuentra en el mismo objeto que la llamó, se busca en toda la prototype chain hasta encontrarla o regresar undefined.
+        //La función hasOwnProperty sirve para verificar si una propiedad es parte del objeto o si viene heredada desde su prototype chain.
+
+
+        
+    </script>
+</body>
+</html>
