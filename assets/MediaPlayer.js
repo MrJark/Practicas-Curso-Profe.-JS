@@ -7,8 +7,22 @@ function MediaPlayer(config) {
 };
 
 MediaPlayer.prototype._initPlugins = function() {//esta función se corresponde al plugin AutoPlay
+    const player = {
+        play: () => this.play(),
+        pause: () => this.pause(),
+        media: this.media,
+        get muted() { //get y set me proporciona valores virtuale de los elementos, en este caso el muted 
+            return this.media.muted;
+        },
+
+        set muted(value) {
+            this.media.muted = value;
+        }
+    };
+
+
     this.plugins.forEach(plugins => {
-        plugins.run(this);
+        plugins.run(player);
     });
 };
 
