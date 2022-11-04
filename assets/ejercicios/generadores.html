@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // Los generadores son funciones de las que se puede salir y volver a entrar.
+    // Su contexto (asociación de variables) será conservado entre las reentradas.
+    // Cada vez que llamamos next, la ejecución del generador va a continuar hasta el proximo yield
+    
+    //los generadores para crearlos es igual que una función pero además se les añade un signo de multilicación al final ' * '
+    function* simpleGenerator () {
+        console.log('Generation Start');
+        yield 1; //esta keyword lo que nos hace es pausar el programa hasta donde está la misma keyword (además se le pueden añadir valores para que los muestre cuando llegue hasta ese yield) y solo si le pedimos un .next continua al siguiente yield o en este caso hasta acabar
+        yield 2; //podemos añadir tatos yield como queramos y así 'pausar' la función las veces que queramos
+        console.log('Generation End');
+    };
+
+    //generador infinito usando el .next en la consola 'gen.next()'
+    function* idMaker() {
+        let id = 1;
+        while(true){ //lo que lo hace infinito es este while (true)
+            yield id;
+            id = id + 1;
+        }
+    }
+
+    //generador infinito pero pausando ahora la función
+    function* idMakerWithReset() {
+        let id = 1;
+        let reset;
+        while(true){ //lo que lo hace infinito es este while (true)
+            reset = yield id;
+            if (reset) { //cuando en la consola ponemos ' gen.next() ' empieza a sumar los id pero si ponemos ' gen.next(true)' con el true, lo que hacemos es devolverle al id el valor de 1 y volvemos a empezar el ciclo
+                id = 1;
+            } else {
+                id = id + 1;
+            };
+        };
+    };
+    // ejemplo de secuecia de fibonacci hasta 20 dígitos
+    function* fibonacci ( ) {
+        let a = 1;
+        let b = 1;
+        while(true){
+            const nextNumber = a + b;
+            a = b;
+            b = nextNumber;
+            yield nextNumber;
+        }
+    }
+
+    
+    </script>
+</body>
+</html>
