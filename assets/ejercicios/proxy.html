@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio de Proxy</title>
+</head>
+<body>
+    <script src=""></script>
+    <script>
+    // Proxy es parecido a getters y setters
+    // Usa un concepto que se llama traps: son interceptores de llamadas. A diferencia de getters, no opera sobre una propieda, si no sobre un objeto.
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy#Methods_of_the_handler_object
+
+    // Creemos un ejemplo donde interceptamos llamadas para leer una propiedad
+    // Si la propiedad existe, la regresamos
+    // Si no existe, entonces sugerimos una que pueda funcionar
+
+    // Para eso eso vamos a usar un algoritmo que se llama Levenshtein. (window.Levenshtein.get)
+    // Ejemplos de levenshtein distance (usa window.Levenshtein)
+
+        const target = { //red, blue y green son las 'llaves', 'keys' y rojo,azul y verde son los 'valores'
+            red: 'Rojo',
+            blue: 'Azul',
+            green: 'Verde',
+        };
+
+        const handler = { //con este handler nos ayuda a encontrar el error y tiene varias funciones o trampas https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Proxy
+            get(obj, prop){ //la 'trampa' que usamos aquí es la de get que es para leer el valor. Recibe dos argumentos, el 'obj' que es el objeto que vamos a leer y el 'prop' que es la propiedad que vamos a leer
+                if (prop in obj){ //con eso le decimos que si existe esa propiedad en el obj, la regresamos
+                    return obj [prop]
+                };
+                const suggestion = Object.keys(obj).fid(key => {//con estas lineas es donde vamos a sugeerir una corrección
+                    return Levenshtein.get(key, prop) <= 3 //con esto sugerimos al usuario si se ha equivocado en una diferencia de 3 letras o menos
+                })
+                if (suggestion){
+                    console.log (`${prop} no se ha encontrado. Quizá quisiste decir ${suggestion}?`);
+                }
+                return obj[prop];
+            }
+        };
+        const p = new Proxy(target, handler);//proxy nos va a regresar un ubjeto que como es una clase lo primero que hacemos es instanciarla con sus dos argumentos. El target es el argumento con el cual vamos a interceptar la llamada al objero
+
+    </script>
+</body>
+</html>
