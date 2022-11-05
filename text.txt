@@ -1,11 +1,11 @@
-SCOPE
+- SCOPE
 Hay 4 tipos de Scope(es o que define el tiempo de vida de una variable y donde se puede ejecutar)
     1. Global: Variables disponibles de forma global se usa la palabra var, son accesibles por todos los scripts que se cargan en la página y se declaran fuera de una función o bloque. Aquí hay mucho riesgo de sobreescritura.
     2. Function: Variables declaradas dentro de una función utilizando var sólo visibles dentro de ella misma (incluyendo los argumentos que se pasan a la función).
     3. Block: Variables definidas dentro de un bloque, por ejemplo variables declaradas dentro un loop while o for. Se usa let y const para declarar este tipo de variables.
     4. Module: Cuando se denota un script de tipo module con el atributo type="module" las variables son limitadas al archivo en el que están declaradas.
 
-CLOUSURES
+- CLOUSURES
 
 [ IIFE (immediately invoked function expression)
 se le llama de la siguiente manera:
@@ -18,7 +18,7 @@ Este tipo de function se usan por motivos de privacidad en versines anteriores p
 "use strict"
 lo usamos para evitar errores de una forma temprana, durante el desarrollo.
 
-PARSERS Y ABSTRACT SYNTAX TREE
+- PARSERS Y ABSTRACT SYNTAX TREE
 El JS Engine recibe el código fuente y lo procesa de la siguiente manera:
 
 - El parser descompone y crea tokens que integran el AST.
@@ -29,7 +29,7 @@ Un SyntaxError es lanzado cuando el motor JavaScript encuentra partes que no for
 
 El parser es del 15% al 20% del proceso de ejecución por lo que hay que usar parser del código justo en el momento que lo necesitamos y no antes de saber si se va a usar o no.
 
-EVENT LOOPS
+- EVENT LOOPS
 
 El Event Loop hace que Javascript parezca ser multihilo a pesar de que corre en un solo proceso.
 
@@ -42,3 +42,15 @@ Javascript se organiza usando las siguientes estructuras de datos:
 - MicroTask Queue. Aquí se agregan las promesas. Esta Queue es la que tiene mayor prioridad.
 
 El Event Loop es un loop que está ejecutando todo el tiempo y pasa periódicamente revisando las queues y el stack moviendo tareas entre estas dos estructuras.
+
+- INTERSECTION OBSERVER
+
+Sirve para observar elementos y si cruzan un umbral que nosotros definimos nos lo va a notificar para tomar acción.
+El umbral se define por el porcentaje que tiene intersección con el viewport, con la parte visible de nuestra página.
+' threshold ' es la funcion que utilizamos para esto y está definido y construido en AutoPause.js 
+
+
+- VisibilityChange
+
+El visibilityChange forma parte del API del DOM llamado Page Visibility y nos deja saber si el elemento es visible, pude ser usado para ejecutar una acción cuando cambiamos de pestaña. Así podemos ahorrar batería y mejorar la UX.
+

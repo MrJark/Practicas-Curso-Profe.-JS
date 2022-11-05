@@ -1,31 +1,45 @@
-// class AutoPause {
-//     constructor() {
-//       this.threshold = 0.25;
-//       this.handleIntersection = this.handleIntersection.bind(this);
-//     }
+
+//IntersectionObserver
+
+class AutoPause {
+    constructor() {
+        this.threshold = 0.6;//% con el que quiero que se pare el video
+        this.handleIntersection = this.handleIntersection.bind(this);
+        this.handleVisibilityChange = this.handleVisibilityChange.bind(this);
+    };
+    
+    run(player) {
+        this.player = player;
+    
+        const observer = new IntersectionObserver(this.handleIntersection, {
+        threshold: this.threshold, //esto es el umbral, el % que tiene que tener el video fuera de la pantalla para que se pare
+        });
+    
+        observer.observe(this.player.media);
+
+        document.addEventListener('visibilitychange', this.handleVisibilityChange) //lo añadimos para mejorar el UX y ahorrar batería en cualquier dispositivo
+    };
   
-//     run(player) {
-//       this.player = player;
-  
-//       const observer = new IntersectionObserver(this.handleIntersection, {
-//         threshold: this.threshold,
-//       });
-  
-//       observer.observe(this.player.media);
-//     }
-  
-//     handleIntersection(entries) {
-//       const entry = entries[0];
-  
-//       const isVisible = entry.intersectionRatio >= this.threshold;
-  
-//       if (isVisible) {
-//         this.player.play();
-//       } else {
-//         this.player.pause();
-//       }
-//     }
-//   }
-  
-//   export default AutoPause;
+    handleIntersection(entries) {
+        const entry = entries[0];
+    
+        const isVisible = entry.intersectionRatio >= this.threshold;
+        if (isVisible) {
+        this.player.play();
+        } else {
+        this.player.pause();
+        }
+    };
+
+    handleVisibilityChange() { //definimos el método
+        const isVisible = document.visibilityState === 'visible'
+        if (isVisible){
+            this.player.play();
+        } else {
+            this.player.pause();
+        }
+    }
+};
+
+export default AutoPause;
 // //esto lo creamos para cuando hagamos scroll hacia abajo, el video se detenga 
