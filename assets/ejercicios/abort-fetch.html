@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abort Fetch Ejercicio</title>
+    </head>
+    <body>
+        <img id="huge-image" height="400">
+
+        <button id="load">Load Huge Image</button>
+        <button id="stop">Stop Fetching</button>
+
+        <script>
+            const url = 'https://images.pexels.com/photos/974470/nature-stars-milky-way-galaxy-974470.jpeg?q=100';
+            const img = document.getElementById('huge-image');
+            const loadButton = document.getElementById('load');
+            const stopButton = document.getElementById('stop');
+            let controller; //ponemos esta función aquí arriba pq necesitamos que esté en el scope global para poder llamarla desde el botón de carga y desde el de stop
+
+            function startLoading() {
+                loadButton.disabled = true;
+                loadButton.innerText = 'Loading...';
+                stopButton.disabled = false;
+            };
+
+            function stopLoading() {
+                loadButton.disabled = false;
+                loadButton.innerText = 'Load Huge Image';
+                stopButton.disabled = true;
+            };
+
+            loadButton.onclick = async function() {
+                startLoading();
+
+                controller = new AbortController();//esto lo ponemos por si la imagen tarda mucho en cargar y no queremos que siga cargando para poder pararla
+
+                try { //usamos el try y catch pq en los fetch cuando detenemos la función nos devuelve un error
+                    const response = await fetch(url, { signal: controller.signal});
+                    const blob = await response.blob();//blob es la imagen de forma binaria y al poner esto, blob, no nos trae el json sino el binario de la foto
+                    const imgUrl = URL.createObjectURL(blob);// con el .createObjectURL(blob) lo que hacemos es convertir el código binario ejecutado antes en una url que en este caso es la imagen, con esto conseguimos que al cargar sea mucho más fluida la página
+                    //para asignar esta url a la imagen tenemos que hacer lo siguiente:
+                    img.src = imgUrl;
+                } catch (error) {
+                    console.log(error.mensaje);
+                };
+
+
+                stopLoading();
+            };
+
+            stopButton.onclick = function() {
+                controller.abort();//esto es lo que hace que se detenga la carga de la img si es muy pesada y no queremos que se nos cargues
+                stopLoading();
+            };
+    
+        </script>
+    </body>
+</html>
