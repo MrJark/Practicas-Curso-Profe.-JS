@@ -2,6 +2,18 @@
 //IntersectionObserver
 
 class AutoPause {
+    //para arreglar los errores si cambiamos de .js a .ts 
+    //los errores se deben a que no están declarados los tipos que llevan
+    //corrección del error de threshould
+
+    //private threshould: number;
+
+    //corrección del error del player
+
+    //player: MediaPlayer;
+
+
+
     constructor() {
         this.threshold = 0.6;//% con el que quiero que se pare el video
         this.handleIntersection = this.handleIntersection.bind(this);

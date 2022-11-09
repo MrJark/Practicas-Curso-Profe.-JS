@@ -88,3 +88,4 @@ function area (r: Rectangulo): number {
 }
 const areaRect = area (rect);
 console.log(areaRect);
+

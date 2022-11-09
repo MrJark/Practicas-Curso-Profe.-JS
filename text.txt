@@ -62,3 +62,6 @@ Parecido a como lo hacen los proxys van a interceptar peticiones para guardar el
 
 -TYPESCRIPT
 Es un superset de JavaScript que añade tipos a nuestras variables ayudando así a la detección de errores de forma temprana y mejorando el autocompletado.
+
+-PATRON DE DISEÑO
+Son soluciones generales ya probadas dentro de un contexto que las limita a problemas frecuentes que nos encontramos en el desarrollo de software
