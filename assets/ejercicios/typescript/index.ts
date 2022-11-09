@@ -45,3 +45,29 @@ comodin = {type: 'Wildcard'};
 let someObject = {type: 'Wildcard'};
 //pero si queremos ser explícitos podemos decirle
 let someObject: object = {type: 'Wildcard'};
+
+//Funciones (tipar)
+function add(a: number, b: number):number {//estamos siendo explícitos en los valores de a y b ya que le estamos diciendo que son números y el tercer number después del paréntesis es el que corresponde al return, lo que nos va a devolver la función
+    return a + b;
+};
+
+const sum = add(5,9);
+
+function createrAdder (a:number): (number) => number { // (number) => number esto reprensenta lo que toma la función, lo que está entre () y el segundo number es lo que nos devuelve
+    return function (b:number){
+        return b + a;
+    };
+};
+
+const addFour = createrAdder(4);
+const fourPlus6 = addFour(6);
+
+function fullName (firstName: string, secondName: string) { // secondName?: string nos deja que el secondName sea o un string o esté undefined
+    return `${firstName} ${secondName}`;
+};
+
+const richard = fullName('Richard') 
+//se pone en rojo porque no le hemos añadido el 'secondName' y por tanto la función nos dice que le falta algo. Para que no pase esto o por si solo queremos colocar el firstName, le tenemos que colocar justo después del secindName un signo de interrogación
+//este signo lo que hace es decirle a la función que puede ser un string o puede estar undefined sería tal que así ' (firstName: string, secondName?: string) '
+// y si por lo que sea queremos que se complete con un valor por omisión si el Usuario no lo hace y no esté en modo undefined podemos hacerlo de la siguiente forma: ' (firstName: string, secondName: string = 'Damasco'): string ' Damasco es el apellido qu ehe puesto, pero podría ser cualquier valor por omision
+
