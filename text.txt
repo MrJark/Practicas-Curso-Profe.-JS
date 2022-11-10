@@ -65,3 +65,12 @@ Es un superset de JavaScript que añade tipos a nuestras variables ayudando así
 
 -PATRON DE DISEÑO
 Son soluciones generales ya probadas dentro de un contexto que las limita a problemas frecuentes que nos encontramos en el desarrollo de software
+
+-PATRONES
+
+ +Creacionales. Proveen diferentes mecanismos para crear objetos.
+ +Estructurales. Describen formas de componer objetos para formar nuevas estructuras flexibles y eficientes.
+ +De Comportamiento. Gestionan algoritmos y responsabilidades entre objetos.
+
+ -PATRÓN SINGLETON
+  Es un patrón que te asegura que una clase solo tiene una instancia. Esta única instancia puede ser consumida por cualquier otro objeto.
